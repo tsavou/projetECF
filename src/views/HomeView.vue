@@ -1,6 +1,7 @@
 <script setup>
 
 import { RouterLink, } from 'vue-router';
+import Button from '@/components/Button.vue'
 </script>
 
 <template>
@@ -13,7 +14,7 @@ import { RouterLink, } from 'vue-router';
         <div class="center">
 
             <H1>Bienvenue sur le portail de gestion de vos avis de passage</H1>
-            <RouterLink to="/generate">Générer votre avis de passage</RouterLink>
+            <RouterLink to="/generate"> <Button>Générer votre avis de passage</Button> </RouterLink>
         </div>
 
     <img id="cleaners" src="../assets/images/cleaning.jpg" alt="cleaners">        
@@ -43,22 +44,12 @@ import { RouterLink, } from 'vue-router';
     gap: 50px;
 }
 
-.center a{
-    text-decoration: none;
-    color: #fff;
-    background-color: #74B857;
-    padding: 1em;
-    border-radius: 10px;
-}
-
-.center a:hover{
-    color: #74B857;
-    background-color: #fff;
-    border: solid 1px #74B857;
-
-}
 img{
     width:300px;
+}
+
+#cleaners{
+    height: 525px;
 }
 
 @media (max-width: 770px) {
