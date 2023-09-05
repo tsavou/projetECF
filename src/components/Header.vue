@@ -80,7 +80,7 @@ nav a:hover {
 }
 
 
-@media all and (max-width: 770px) {
+@media (max-width: 770px) {
 
     .links {
         display: none;
