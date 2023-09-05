@@ -43,7 +43,7 @@ const submitData = (event) => {
     <div class="cleaner left"></div>
 
     <div class="avisform" v-if="formGenerated==false">
-      <h1>Saisie d'un Avis de passage</h1>
+      <h1>Saisie d'un avis de passage</h1>
 
       <div class="typeOfClient" v-if="showtypeOfClient">
         <p>Le client est un :</p>
@@ -99,7 +99,7 @@ const submitData = (event) => {
     </div>
 
     <div class="form-generated" v-else>
-      <h1>Votre avis de passage a été généré  avec succès!</h1>
+      <p>Votre avis de passage a été généré avec succès!</p>
 
       <RouterLink to="/avis">
         <Button>Consulter mon avis de passage</Button>
@@ -177,7 +177,15 @@ textarea {
   background-position: center;
 }
 
-
+.form-generated {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  font-size: 1.5em;  
+}
 
 
 label {
@@ -210,5 +218,10 @@ label {
   h1 {
     color: #fff;
   }
+
+  .form-generated {
+  
+  color:#fff  
+}
 }
 </style>
