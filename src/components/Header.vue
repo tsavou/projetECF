@@ -28,8 +28,8 @@ const toggleMenu = () => {
                     <div class="burger-btn" @click="toggleMenu()" v-else>x</div>
 
                     <div class="links" :class="{ 'menu-open': isMenuOpen }">
-                        <RouterLink to="/" @click="toggleMenu()"> <img src="../assets/images/new.svg" alt="new"> Générer un avis</RouterLink>
-                        <RouterLink to="/" @click="toggleMenu()"> <img src="../assets/images/file.svg" alt=""> Mon avis de passage</RouterLink>                        
+                        <RouterLink to="/generate" @click="toggleMenu()"> <img src="../assets/images/new.svg" alt="new"> Générer un avis</RouterLink>
+                        <RouterLink to="/avis" @click="toggleMenu()"> <img src="../assets/images/file.svg" alt=""> Mon avis de passage</RouterLink>                        
                         
                     </div>
                 </div>
