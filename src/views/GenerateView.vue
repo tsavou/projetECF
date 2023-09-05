@@ -4,6 +4,7 @@ import Button from '@/components/Button.vue'
 
 const TypeOfClient = ref('');
 const showtypeOfClient = ref(true);
+const fakeCommit = "";
 
 
 const toggletypeOfClient = (type) => {
