@@ -8,7 +8,7 @@ const showtypeOfClient = ref(true);
 
 const toggletypeOfClient = (type) => {
   TypeOfClient.value = type;
-  showtypeOfClient.value = false;  
+  showtypeOfClient.value = false;
 }
 
 const toggleBack = () => {
@@ -16,8 +16,29 @@ const toggleBack = () => {
   TypeOfClient.value = '';
 }
 
-const particuliers= ref(["Jérôme Livran","Philippe Parguey"]);
-const pro= ref(["Jardins d'Ariana","Archimed","BeCom"]);
+const particuliers = ref(["Jérôme Livran", "Philippe Parguey"]);
+const pro = ref(["Jardins d'Ariana", "Archimed", "BeCom"]);
+
+const clientName = ref('');
+const date = ref('');
+const observations = ref('');
+
+const generateAvis = () => {
+  const nomClient = clientName.value;
+  const dateIntervention = date.value;
+  const observationsIntervention = observations.value;
+
+  const avisDePassage = {
+    nomClient,
+    dateIntervention,
+    observationsIntervention,
+  };
+
+  alert(avisDePassage.value);
+}
+
+console.log(clientName);
+
 
 </script>
 
@@ -32,41 +53,41 @@ const pro= ref(["Jardins d'Ariana","Archimed","BeCom"]);
         <p>Le client est un :</p>
 
         <Button @click="toggletypeOfClient('particulier')" value="particulier">Particulier</Button>
-        <Button @click="toggletypeOfClient('pro')" value="pro">Professionnel</Button>            
+        <Button @click="toggletypeOfClient('pro')" value="pro">Professionnel</Button>
 
       </div>
-      
 
-      <form action="post" v-if="TypeOfClient === 'particulier'">
+
+      <form @submit="generateAvis()" v-if="TypeOfClient === 'particulier'">
 
         <Button class="backbtn" @click="toggleBack">Retour</Button>
 
         <label for="clientName">Nom du client :</label>
-        <select name="client" id="client"  required>
+        <select name="client" id="client" v-model="clientName" required>
           <option value="" disabled selected>-- Sélectionnez un client --</option>
-          <option  v-for="client in particuliers" value="client">{{ client }}</option>
-          
-        </select>        
+          <option v-for="client in particuliers" :value="client">{{ client }}</option>
+
+        </select>
 
         <label for="date" required>Date de l'intervention :</label>
-        <input type="date" required>
+        <input type="date" v-model="date" required>
 
         <label for="Observations">Observations</label>
-        <textarea name="Observations" id="Observations" cols="30" rows="10"
+        <textarea name="Observations" id="Observations" cols="30" rows="10" v-model="observations"
           placeholder="Ecrivez vos observations sur l’intervention (commentaires, remarques, problématiques...)"></textarea>
 
-        <Button>Générer mon avis de passage</Button>
+        <Button type="submit" @click="">Générer mon avis de passage</Button>
 
       </form>
       <form action="post" v-if="TypeOfClient === 'pro'">
         <Button class="backbtn" @click="toggleBack">Retour</Button>
 
         <label for="client">Nom de l'entreprise :</label>
-        <select name="client" id="client" >
+        <select name="client" id="client">
           <option value="" disabled selected>-- Sélectionnez un client --</option>
-          <option  v-for="client in pro" value="client">{{ client }}</option>
-          
-        </select>   
+          <option v-for="client in pro" value="client">{{ client }}</option>
+
+        </select>
         <label for="date">Date de l'intervention :</label>
         <input type="date" required>
 
@@ -77,6 +98,13 @@ const pro= ref(["Jardins d'Ariana","Archimed","BeCom"]);
         <Button>Générer mon avis de passage</Button>
 
       </form>
+    </div>
+
+    <div v-if="avisDePassage">
+      <h2>Avis de Passage</h2>
+      <p><strong>Nom du client :</strong> {{ avisDePassage.nomClient }}</p>
+      <p><strong>Date de l'intervention :</strong> {{ avisDePassage.dateIntervention }}</p>
+      <p><strong>Observations :</strong> {{ avisDePassage.observationsIntervention }}</p>
     </div>
 
     <div class="cleaner right">
@@ -107,16 +135,17 @@ h1 {
 
 .typeOfClient {
   padding: 5em;
-  
+
 }
 
 .typeOfClient p {
   margin-bottom: 2em;
 }
+
 .typeOfClient button {
   display: flex;
   justify-content: center;
-  
+
   margin: 0.5em;
   padding: 0.5em 1em;
   border-radius: 5px;
@@ -124,13 +153,14 @@ h1 {
 
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
 
 }
 
-label, textarea {
+label,
+textarea {
   margin-bottom: 0.5em;
 }
 
@@ -160,26 +190,25 @@ label {
 
 @media (max-width: 920px) {
   .container {
-   background-image: url("../assets/images/technicien.jpg");
-   background-position: center;
-   background-size: cover;
- 
+    background-image: url("../assets/images/technicien.jpg");
+    background-position: center;
+    background-size: cover;
+
   }
 
-  .cleaner{
+  .cleaner {
     display: none;
   }
 
-  form{
+  form {
     margin-top: 20px;
     background-color: rgb(232, 223, 163);
     padding: 1em;
     border-radius: 10px;
   }
 
-  h1{
+  h1 {
     color: #fff;
   }
 }
-
 </style>
