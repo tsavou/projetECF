@@ -86,7 +86,7 @@ nav a:hover {
         position: absolute;
         top: 80px;       
         left: 0;
-        background-color: #74B857;
+        background-color: #3D3D34;
         width: 100%;
         
     }
@@ -113,14 +113,14 @@ nav a:hover {
 
     .links a {
         width: 100%;
-        text-align: center;
-        color:#3D3D34;
+        text-align: center;        
         font-weight: bold;
+        color:aliceblue;
     }
 
     .links a:hover {
-        background-color: #3D3D34;
-        color:aliceblue;
+        background-color: #74B857;
+        color:#3D3D34;
     }
 
 
