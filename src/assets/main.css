@@ -7,8 +7,17 @@
 body{
     font-family:Verdana, sans-serif ;
     font-size: 16px;
+    min-height: 100vh;
+    
+}
+#app{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.container{
+    margin:100px 0;
+    flex: 1;    
+ 
 }
 
-.container{
-    margin:100px 0
-}

@@ -1,5 +1,5 @@
 <template>
     <div class="container">
-        Avis de passage
+        <h1>Avis de passage</h1>
     </div>
 </template>
