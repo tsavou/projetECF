@@ -74,7 +74,8 @@ a {
 }
 
 nav a:hover {
-    border-bottom: #fff solid 1px;
+    border-bottom: #74B857 solid 1px;
+    color: #74B857;
 
 }
 
