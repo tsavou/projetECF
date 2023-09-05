@@ -11,6 +11,11 @@ const toggletypeOfClient = (type) => {
   showtypeOfClient.value = false;  
 }
 
+const toggleBack = () => {
+  showtypeOfClient.value = true;
+  TypeOfClient.value = '';
+}
+
 const particuliers= ref(["Jérôme Livran","Philippe Parguey"]);
 const pro= ref(["Jardins d'Ariana","Archimed","BeCom"]);
 
@@ -34,6 +39,8 @@ const pro= ref(["Jardins d'Ariana","Archimed","BeCom"]);
 
       <form action="post" v-if="TypeOfClient === 'particulier'">
 
+        <Button class="backbtn" @click="toggleBack">Retour</Button>
+
         <label for="clientName">Nom du client :</label>
         <select name="client" id="client"  required>
           <option value="" disabled selected>-- Sélectionnez un client --</option>
@@ -52,6 +59,7 @@ const pro= ref(["Jardins d'Ariana","Archimed","BeCom"]);
 
       </form>
       <form action="post" v-if="TypeOfClient === 'pro'">
+        <Button class="backbtn" @click="toggleBack">Retour</Button>
 
         <label for="client">Nom de l'entreprise :</label>
         <select name="client" id="client" >
@@ -144,4 +152,34 @@ label, textarea {
 
 label {
   margin-top: 0.5em;
-}</style>
+}
+
+.backbtn {
+  width: fit-content;
+}
+
+@media (max-width: 920px) {
+  .container {
+   background-image: url("../assets/images/technicien.jpg");
+   background-position: center;
+   background-size: cover;
+ 
+  }
+
+  .cleaner{
+    display: none;
+  }
+
+  form{
+    margin-top: 20px;
+    background-color: rgb(232, 223, 163);
+    padding: 1em;
+    border-radius: 10px;
+  }
+
+  h1{
+    color: #fff;
+  }
+}
+
+</style>
