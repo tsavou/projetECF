@@ -1,11 +1,17 @@
+<script setup>
+import { useAvisStore } from '../stores/avis';
+
+const store= useAvisStore();
+</script>
+
 <template>
     <div class="container">
         <div class="avisform">
             <h1>Avis de passage</h1>
             <p>
-                Le DATE intervention, un technicien Clean3000 est intervenu chez NOM DU CLIENT pour l’entretien de la
+                Le {{store.date}}, un technicien Clean3000 est intervenu chez {{store.name}} pour l’entretien de la
                 vitrerie. 
-                <br>Voici les observations relevées: observations
+                <br>Voici les observations relevées: {{store.message}}
             </p>
             <p>Nous vous remercions pour votre confiance,</p>
             <div class="avis-footer">

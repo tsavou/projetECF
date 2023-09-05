@@ -10,7 +10,7 @@ const router = createRouter({
     },
     {
       path: '/generate',
-      name: 'generer un avis',      
+      name: 'generate',      
       component: () => import('../views/GenerateView.vue')
     },
      {

@@ -1,10 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 import Button from '@/components/Button.vue'
+import {useAvisStore} from '@/stores/avis'
+import {RouterLink} from 'vue-router'
 
 const TypeOfClient = ref('');
 const showtypeOfClient = ref(true);
-const fakeCommit = "";
 
 
 const toggletypeOfClient = (type) => {
@@ -23,22 +24,16 @@ const pro = ref(["Jardins d'Ariana", "Archimed", "BeCom"]);
 const clientName = ref('');
 const date = ref('');
 const observations = ref('');
+const formGenerated = ref(false);
 
-const generateAvis = () => {
-  const nomClient = clientName.value;
-  const dateIntervention = date.value;
-  const observationsIntervention = observations.value;
+const store= useAvisStore();
 
-  const avisDePassage = {
-    nomClient,
-    dateIntervention,
-    observationsIntervention,
-  };
-
-  alert(avisDePassage.value);
-}
-
-console.log(clientName);
+const submitData = (event) => {
+  event.preventDefault();
+  store.addData(clientName.value, date.value, observations.value); 
+  formGenerated.value = true; 
+  
+};
 
 
 </script>
@@ -47,7 +42,7 @@ console.log(clientName);
   <div class="container">
     <div class="cleaner left"></div>
 
-    <div class="avisform">
+    <div class="avisform" v-if="formGenerated==false">
       <h1>Saisie d'un Avis de passage</h1>
 
       <div class="typeOfClient" v-if="showtypeOfClient">
@@ -59,7 +54,7 @@ console.log(clientName);
       </div>
 
 
-      <form @submit="generateAvis()" v-if="TypeOfClient === 'particulier'">
+      <form v-if="TypeOfClient === 'particulier'">
 
         <Button class="backbtn" @click="toggleBack">Retour</Button>
 
@@ -77,36 +72,40 @@ console.log(clientName);
         <textarea name="Observations" id="Observations" cols="30" rows="10" v-model="observations"
           placeholder="Ecrivez vos observations sur l’intervention (commentaires, remarques, problématiques...)"></textarea>
 
-        <Button type="submit" @click="">Générer mon avis de passage</Button>
+        
+          <Button @click="submitData">Générer mon avis de passage</Button>
 
       </form>
-      <form action="post" v-if="TypeOfClient === 'pro'">
+
+      <form v-if="TypeOfClient === 'pro'">
         <Button class="backbtn" @click="toggleBack">Retour</Button>
 
         <label for="client">Nom de l'entreprise :</label>
-        <select name="client" id="client">
+        <select name="client" id="client" v-model="clientName" required>
           <option value="" disabled selected>-- Sélectionnez un client --</option>
           <option v-for="client in pro" value="client">{{ client }}</option>
 
         </select>
         <label for="date">Date de l'intervention :</label>
-        <input type="date" required>
+        <input type="date" v-model="date" required>
 
         <label for="Observations">Observations</label>
-        <textarea name="Observations" id="Observations" cols="30" rows="10"
+        <textarea name="Observations" id="Observations" cols="30" rows="10" v-model="observations"
           placeholder="Ecrivez vos observations sur l’intervention (commentaires, remarques, problématiques...)"></textarea>
 
-        <Button>Générer mon avis de passage</Button>
+        <Button @click="submitData"> Générer mon avis de passage</Button>
 
       </form>
     </div>
 
-    <div v-if="avisDePassage">
-      <h2>Avis de Passage</h2>
-      <p><strong>Nom du client :</strong> {{ avisDePassage.nomClient }}</p>
-      <p><strong>Date de l'intervention :</strong> {{ avisDePassage.dateIntervention }}</p>
-      <p><strong>Observations :</strong> {{ avisDePassage.observationsIntervention }}</p>
+    <div class="form-generated" v-else>
+      <h1>Votre avis de passage a été généré  avec succès!</h1>
+
+      <RouterLink to="/avis">
+        <Button>Consulter mon avis de passage</Button>
+      </RouterLink>
     </div>
+    
 
     <div class="cleaner right">
 
